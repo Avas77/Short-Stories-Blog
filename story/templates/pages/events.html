@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div id="colorlib-main">
+	<section class="ftco-section">
+		<div class="container">
+			
+			<div class="row px-md-4">
+
+				<h1 style = "text-align: center;margin-left: 50px;
+				font-weight: bold">Come up with an exciting story in 60 mins!!!
+				</h1>
+				<h6 style = "margin:20px">To start the challenge click on the start button below.You have 60 mins to come up with an exciting short story for the readers.The winners of this challenge will be awarded with exciting prizes so hurry up and hit the start button now.</h6>
+				
+				<div class="col-md-12">
+					<div style = "border-radius: 5px;background-color: #f2f2f2;padding: 20px;width: 950px; margin-top: 20px">
+						<p id = "demo" style = "
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+						width: 400px;
+						height: 200px;
+						margin-left: 270px;
+						text-align: center;
+						font-size: 100px;
+						color: #000d21;
+						font-weight: bolder;
+						margin-bottom: 30px;"></p>
+						<button type = "submit" onclick="myFunction(this)" style = "margin-left: 440px" class="btn btn-primary" id = "btn">
+							Start
+						</button>
+
+						<form method = "POST" 
+						id = "panel" style = "display:none" enctype=
+						"multipart/form-data">
+							{% csrf_token %}
+				            <fieldset>
+				            	<legend class="border-bottom mb-4" style="padding-top: 5%">Hurry Up!</legend>
+				            		{{ form|crispy }}
+				            	</fieldset>
+				            	
+				             	<div class="form-group">
+				                <button class="btn btn-outline-info" type="submit" value="Register">Post</button>
+				              	</div>
+					  </form>
+					 
+					</div>	
+					
+							
+				</div>
+			</div>
+		</div>
+	</section>
+</div><!-- END COLORLIB-MAIN -->
+<script>
+	var counter = 0;
+	var timeleft = 60;
+	
+	function convertSeconds(s){
+		var min = Math.floor(s / 60);
+		var sec = s % 60;
+		return min + ':' + sec;
+	}
+
+	function myFunction(id) {
+		document.getElementById("panel").style.display = "block";
+		document.getElementById("btn").style.display = "none";
+  		function timeIt(){
+  			counter++;
+  			document.getElementById("demo").innerHTML = 
+  			convertSeconds(timeleft - counter);
+  			if(counter == timeleft){
+  				clearInterval(interval);
+  				document.getElementById("panel").style.display = "none";
+  				document.getElementById("btn").style.display = "block";
+  				counter = 0;
+  			}
+  		}
+  		var interval = setInterval(timeIt, 1000);
+	}
+</script>
+{% endblock %}

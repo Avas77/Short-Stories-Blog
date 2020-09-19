@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+<div id="colorlib-main" >
+	<section>
+		<div class="container">
+			<div class="row px-md-4">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					
+				    <form method = "POST" >
+				        {% csrf_token %}
+				            <fieldset>
+				            	<legend class="border-bottom mb-4" style="padding-top: 5%">Compose a Story</legend>
+				            		{{ form|crispy }}
+				            	</fieldset>
+				            	
+				             	<div class="form-group">
+				                <button class="btn btn-outline-info" type="submit" value="Register">Post</button>
+				              	</div>
+				    </form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+<div id="colorlib-main" >
+	<section>
+		<div class="container">
+			<div class="row px-md-4">
+	<div class="col-md-5">
+	    <form method = "POST" >
+	            	{% csrf_token %}
+	            	<fieldset>
+	            		<legend class="border-bottom mb-4" style="padding-top: 5%">Join Today</legend>
+	            		{{ form|crispy }}
+	            	</fieldset>
+	            	
+	              
+	                <button class="btn btn-outline-info" type="submit" value="Register" >Sign Up</button>
+	              
+	              	    </form>
+
+	            <div class="border-top">
+	            	<small class="text-muted">
+	            		Already have an account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
+	            	</small>
+	            	
+	            </div>
+	 </div>
+	        
+	        <div class="col-md-5" style="padding-top: 5%"><img src="{% static 'images/inspiration.png' %}" ></div>
+	    </div>
+	</section>
+	         
+</div>
+	        
+	       
+	        <!-- {% include 'pages/alerts.html' %} -->
+	          
+
+	    
+{% endblock %}
